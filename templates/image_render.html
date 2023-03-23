@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rendering Dynamic Images Using Flask</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+          background-color: rgb(215, 117, 19);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100vh;
+          flex-direction: column;
+          margin-top: 2rem;
+        }
+      
+        
+        div{
+            border: 2px solid rgb(46, 43, 43);
+            padding: 1rem 2rem;
+            background-color: #FFFFFF;
+        }
+        #submit{
+            padding: 8px;
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+#submit:hover,
+#submit:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+#submit:active {
+  opacity: .5;
+}
+#file{
+    padding: 20px;
+
+}
+img{
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+}
+        
+        h1 {
+          color: maroon;
+          margin-left: 40px;
+        }
+        </style>
+</head>
+
+<body >
+ 
+<div>
+<form  action="{{ url_for('upload_file') }}" enctype="multipart/form-data" method="POST">
+    <input id="file" name="img" type="file"/>
+    <input id="submit" type="submit"/>
+</form>
+
+{% if img %}
+<h1>Rendered Image</h1>
+<img src="{{img}}">
+{% else %}
+<h1>Image will be render here...</h1>
+</div>
+{% endif %}
+</body>
+
+</html>
